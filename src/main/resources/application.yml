@@ -1,0 +1,23 @@
+server.port: 9528
+
+#============== kafka ===================
+# 指定kafka 代理地址，可以多个
+#local kafka
+spring.kafka:
+  bootstrap-servers: 120.78.206.144:9092
+  #=============== provider  ======================
+  producer:
+    topic: records-11
+    retries: 0
+    # 每次批量发送消息的数量
+    batch-size: 16384
+    buffer-memory: 33554432
+  #=============== consumer  =======================
+  consumer:
+    topic: records-1
+    # 指定默认消费者group id
+    group-id: test-consumer-group
+    #spring.kafka.consumer.auto-offset-reset=earliest
+    auto-offset-reset: latest
+    enable-auto-commit: true
+    auto-commit-interval: 100
