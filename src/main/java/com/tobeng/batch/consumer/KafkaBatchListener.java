@@ -24,7 +24,7 @@ public class KafkaBatchListener {
     private static int i = 0;
     private ExecutorService pool = newCachedThreadPool();
 
-    @KafkaListener(topics = "${spring.kafka.consumer.topic}", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "${spring.kafka.consumer.topic}", containerFactory = "batchFactory")
     public void listenPartition1(List<ConsumerRecord<?, ?>> records) {
         i++;
         pool.execute(new StatictisThrad(records));

@@ -6,18 +6,21 @@ server.port: 9528
 spring.kafka:
   bootstrap-servers: 120.78.206.144:9092
   #=============== provider  ======================
-  producer:
-    topic: records-11
-    retries: 0
-    # 每次批量发送消息的数量
-    batch-size: 16384
-    buffer-memory: 33554432
-  #=============== consumer  =======================
   consumer:
-    topic: records-1
-    # 指定默认消费者group id
-    group-id: test-consumer-group
-    #spring.kafka.consumer.auto-offset-reset=earliest
-    auto-offset-reset: latest
     enable-auto-commit: true
+    group-id: demo1111
+    # 批量一次最大拉取数据量
+    max-poll-records: 1000
     auto-commit-interval: 100
+    auto-offset-reset: latest
+    bootstrap-servers: 120.78.206.144:9092
+    topic: records-1
+  producer:
+    # 重试次数
+    retries: 3
+    # 批量发送的消息数量
+    batch-size: 16384
+    # 32MB的批处理缓冲区
+    buffer-memory: 33554432
+    bootstrap-servers: 120.78.206.144:9092
+    topic: records-11 # 5分钟流量统计结果发送目标topic
